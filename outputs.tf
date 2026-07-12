@@ -1,3 +1,7 @@
+output "workloads_sap_single_node_virtual_instances_id" {
+  description = "Map of id values across all workloads_sap_single_node_virtual_instances, keyed the same as var.workloads_sap_single_node_virtual_instances"
+  value       = { for k, v in azurerm_workloads_sap_single_node_virtual_instance.workloads_sap_single_node_virtual_instances : k => v.id }
+}
 output "workloads_sap_single_node_virtual_instances_app_location" {
   description = "Map of app_location values across all workloads_sap_single_node_virtual_instances, keyed the same as var.workloads_sap_single_node_virtual_instances"
   value       = { for k, v in azurerm_workloads_sap_single_node_virtual_instance.workloads_sap_single_node_virtual_instances : k => v.app_location }

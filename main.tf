@@ -16,7 +16,7 @@ resource "azurerm_workloads_sap_single_node_virtual_instance" "workloads_sap_sin
     app_resource_group_name = each.value.single_server_configuration.app_resource_group_name
     database_type           = each.value.single_server_configuration.database_type
     dynamic "disk_volume_configuration" {
-      for_each = each.value.single_server_configuration.disk_volume_configuration != null ? [each.value.single_server_configuration.disk_volume_configuration] : []
+      for_each = each.value.single_server_configuration.disk_volume_configuration != null ? each.value.single_server_configuration.disk_volume_configuration : []
       content {
         number_of_disks = disk_volume_configuration.value.number_of_disks
         size_in_gb      = disk_volume_configuration.value.size_in_gb
@@ -44,7 +44,7 @@ resource "azurerm_workloads_sap_single_node_virtual_instance" "workloads_sap_sin
       for_each = each.value.single_server_configuration.virtual_machine_resource_names != null ? [each.value.single_server_configuration.virtual_machine_resource_names] : []
       content {
         dynamic "data_disk" {
-          for_each = virtual_machine_resource_names.value.data_disk != null ? [virtual_machine_resource_names.value.data_disk] : []
+          for_each = virtual_machine_resource_names.value.data_disk != null ? virtual_machine_resource_names.value.data_disk : []
           content {
             names       = data_disk.value.names
             volume_name = data_disk.value.volume_name

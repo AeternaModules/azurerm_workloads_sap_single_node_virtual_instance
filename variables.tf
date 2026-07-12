@@ -61,12 +61,12 @@ EOT
     single_server_configuration = object({
       app_resource_group_name = string
       database_type           = optional(string)
-      disk_volume_configuration = optional(object({
+      disk_volume_configuration = optional(list(object({
         number_of_disks = number
         size_in_gb      = number
         sku_name        = string
         volume_name     = string
-      }))
+      })))
       secondary_ip_enabled = optional(bool) # Default: false
       subnet_id            = string
       virtual_machine_configuration = object({
@@ -84,10 +84,10 @@ EOT
         virtual_machine_size = string
       })
       virtual_machine_resource_names = optional(object({
-        data_disk = optional(object({
+        data_disk = optional(list(object({
           names       = list(string)
           volume_name = string
-        }))
+        })))
         host_name               = optional(string)
         network_interface_names = optional(list(string))
         os_disk_name            = optional(string)

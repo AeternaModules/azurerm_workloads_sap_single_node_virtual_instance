@@ -56,7 +56,7 @@ EOT
     sap_fqdn                              = string
     sap_product                           = string
     managed_resource_group_name           = optional(string)
-    managed_resources_network_access_type = optional(string) # Default: "Public"
+    managed_resources_network_access_type = optional(string)
     tags                                  = optional(map(string))
     single_server_configuration = object({
       app_resource_group_name = string
@@ -67,7 +67,7 @@ EOT
         sku_name        = string
         volume_name     = string
       })))
-      secondary_ip_enabled = optional(bool) # Default: false
+      secondary_ip_enabled = optional(bool)
       subnet_id            = string
       virtual_machine_configuration = object({
         image = object({
